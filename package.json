@@ -1,0 +1,21 @@
+{
+  "name": "pg-admin-backend",
+  "version": "1.0.0",
+  "description": "PG-Admin-Backend is the backend service for the comprehensive web application PG-Admin-Website, designed to efficiently manage and administer PG (Paying Guest) accommodations. This backend service is built using Node.js and Express.js and connects to a MySQL database. It handles all server-side operations including user management, room management, booking management, payment tracking, notifications, and reporting.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.3",
+    "sequelize": "^6.37.3"
+  }
+}
