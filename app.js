@@ -1,38 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sequelize = require('./config/db');
-const userRoutes = require('./routes/user-routes');
-const roomRoutes = require('./routes/room-routes');
-const bookingRoutes = require('./routes/booking-routes');
-const paymentRoutes = require('./routes/payment-routes');
-const notificationRoutes = require('./routes/notification-routes');
-const reportRoutes = require('./routes/reports-routes');
-const authRoutes = require('./routes/auth-routes');
-const { verifyToken } = require('./middleware/auth-middleware');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
-// Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
-// Public routes
-app.use('/api/auth', authRoutes);
+// Routes
+const authRoutes = require('./routes/authRoutes');
+const roomRoutes = require('./routes/roomRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
+const reportRoutes = require('./routes/reportsRoutes');
 
-// Protected routes
-app.use('/api/users', verifyToken, userRoutes);
-app.use('/api/rooms', verifyToken, roomRoutes);
-app.use('/api/bookings', verifyToken, bookingRoutes);
-app.use('/api/payments', verifyToken, paymentRoutes);
-app.use('/api/notifications', verifyToken, notificationRoutes);
-app.use('/api/reports', verifyToken, reportRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/rooms', roomRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/reports', reportRoutes);
 
 const PORT = process.env.PORT || 5000;
-
-// Sync database and start server
-sequelize.sync().then(() => {
-  app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-  });
-}).catch(err => {
-  console.error('Unable to connect to the database:', err);
 });
