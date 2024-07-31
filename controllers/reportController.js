@@ -14,7 +14,7 @@ exports.getOccupancyReport = (req, res) => {
             console.error('Error fetching occupancy report:', err);
             return res.status(500).send(err);
         }
-        console.log('Occupancy report results:', results); // Add this line
+        console.log('Occupancy report results:', results);
         res.status(200).send(results);
     });
 };
@@ -31,7 +31,7 @@ exports.getPaymentReport = (req, res) => {
             console.error('Error fetching payment report:', err);
             return res.status(500).send(err);
         }
-        console.log('Payment report results:', results); // Add this line
+        console.log('Payment report results:', results);
         res.status(200).send(results);
     });
 };
